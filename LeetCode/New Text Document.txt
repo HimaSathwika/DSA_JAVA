@@ -1,0 +1,50 @@
+160. Intersection of Two Linked Lists
+----------------------------------------
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode a = headA;
+        ListNode b = headB;
+        int len_a = 0 , len_b = 0;
+        while(a != null){
+            len_a ++;
+            a = a.next;
+        }
+        while (b != null){
+            len_b ++ ;
+            b = b.next;
+        }
+        a = headA;
+        b = headB;
+        if (len_a > len_b){
+            int diff = len_a - len_b;
+            while (diff > 0){
+                a = a.next;
+                diff--;
+            }
+        }
+        else{
+            int diff = len_b - len_a;
+            while (diff > 0){
+                b = b.next;
+                diff--;
+            }
+        }
+        while(a != b){
+            a = a.next;
+            b = b.next;
+        }
+        return a;
+    }
+}
